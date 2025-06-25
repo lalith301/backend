@@ -18,19 +18,14 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// 🔒 Hash password before saving
+// 🔐 Hash password before save
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
-
-  try {
-    this.password = await bcrypt.hash(this.password, 10);
-    next();
-  } catch (err) {
-    next(err);
-  }
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
 });
 
-// 🔐 Password comparison method
+// 🔐 Compare password
 userSchema.methods.comparePassword = function (pwd) {
   return bcrypt.compare(pwd, this.password);
 };
