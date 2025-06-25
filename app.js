@@ -12,7 +12,7 @@ const app = express();
 
 // ✅ 2. Enable CORS for Vercel frontend
 app.use(cors({
-  origin: 'https://frontend-ugv2.vercel.app/', // ⬅️ replace with actual Vercel frontend URL
+  origin: 'https://frontend-ugv2.vercel.app', // ⬅️ replace with actual Vercel frontend URL
   credentials: true,
 }));
 
